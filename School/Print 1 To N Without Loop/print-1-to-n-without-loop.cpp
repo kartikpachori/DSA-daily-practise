@@ -6,16 +6,18 @@ using namespace std;
 // } Driver Code Ends
 class Solution{
     public:
-     void printNos(int current, int N) {
+    //Complete this function
+    void printMos(int current, int N) {
         if (current > N) {
             return;
         }
         cout << current << " ";
-        printNos(current + 1, N);
+        printMos(current + 1, N);
     }
 
+    // Main function that initiates the recursion
     void printNos(int N) {
-        printNos(1, N);
+        printMos(1, N);
     }
 };
 
