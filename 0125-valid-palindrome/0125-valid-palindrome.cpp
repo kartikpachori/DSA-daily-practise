@@ -1,31 +1,23 @@
 class Solution {
 public:
-    bool isPalindrome(std::string s) {
-        // Step 1: Filter the string to include only alphanumeric characters and convert to lowercase
-        std::string filtered;
-        for (char c : s) {
-            if (std::isalnum(c)) {
-                filtered += std::tolower(c);
-            }
+    bool isPalindrome(string s) {
+    string filteredStr = "";
+    
+    // Normalize the string: convert to lowercase and filter non-alphanumeric characters
+    for (char c : s) {
+        if (isalnum(c)) { // Check if the character is alphanumeric
+            filteredStr += tolower(c); // Convert to lowercase and add to filteredStr
         }
-        
-        // Step 2: Use a recursive function to check if the filtered string is a palindrome
-        return isPalindromeRecursive(filtered, 0, filtered.size() - 1);
     }
     
-private:
-    bool isPalindromeRecursive(const std::string &s, int left, int right) {
-        // Base case: if pointers have crossed each other, it is a palindrome
-        if (left >= right) {
-            return true;
+    // Check if filteredStr is a palindrome
+    int n = filteredStr.size();
+    for (int i = 0; i < n / 2; ++i) {
+        if (filteredStr[i] != filteredStr[n - i - 1]) {
+            return false; // Not a palindrome
         }
-        
-        // Check characters at current pointers
-        if (s[left] != s[right]) {
-            return false;
-        }
-        
-        // Move towards the center
-        return isPalindromeRecursive(s, left + 1, right - 1);
     }
+    
+    return true; // It is a palindrome
+}
 };
