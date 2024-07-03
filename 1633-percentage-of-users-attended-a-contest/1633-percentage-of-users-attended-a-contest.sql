@@ -1,10 +1,21 @@
+WITH TotalUsers AS (
+    SELECT COUNT(DISTINCT user_id) AS total_users
+    FROM Users
+),
+ContestUsers AS (
+    SELECT 
+        contest_id, 
+        COUNT(DISTINCT user_id) AS distinct_user_count
+    FROM 
+        Register
+    GROUP BY 
+        contest_id
+)
 SELECT 
-    t1.contest_id,
-    ROUND((COUNT(DISTINCT t1.user_id) * 100.0) / (SELECT COUNT( user_id) FROM Users), 2) AS percentage
+    cu.contest_id,
+    ROUND((cu.distinct_user_count * 100.0) / tu.total_users, 2) AS percentage
 FROM 
-    Register t1
-GROUP BY 
-    t1.contest_id
+    ContestUsers cu, TotalUsers tu
 ORDER BY 
     percentage DESC,
-    t1.contest_id ASC;
+    cu.contest_id ASC;
