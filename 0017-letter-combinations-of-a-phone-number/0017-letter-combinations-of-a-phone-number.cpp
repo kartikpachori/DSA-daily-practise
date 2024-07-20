@@ -23,7 +23,7 @@ public:
         return result;
     }
     
-private:
+public:
     void backtrack(vector<string>& result, const vector<string>& digitToLetters, const string& digits, string& currentCombination, int index) {
         if (index == digits.size()) {  // If we've reached the end of the digits string
             result.push_back(currentCombination);  // Add the current combination to the result
