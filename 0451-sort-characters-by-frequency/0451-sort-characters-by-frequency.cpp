@@ -9,7 +9,7 @@ public:
         
         // Step 2: Store characters by frequency
         vector<pair<int, char>> freqVec;
-        for (const pair<const char, int>& entry : freqMap) {
+        for (auto& entry : freqMap) {
             freqVec.push_back({entry.second, entry.first});
         }
         
