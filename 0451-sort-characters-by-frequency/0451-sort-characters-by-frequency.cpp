@@ -14,7 +14,7 @@ public:
         }
         
         // Step 3: Sort by frequency in descending order
-        sort(freqVec.begin(), freqVec.end(), greater<pair<int, char>>());
+        sort(freqVec.begin(), freqVec.end(), greater<>());
         
         // Step 4: Build the result string
         string result;
