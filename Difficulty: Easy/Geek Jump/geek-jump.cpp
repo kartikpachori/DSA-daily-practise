@@ -6,18 +6,21 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
   public:
-    int mini(int idx,vector<int>& heights,vector<int>&dp){
-        if (idx==0)return 0;
-        if(dp[idx]!=-1)return dp[idx];
-        int left = mini(idx-1,heights,dp) + abs(heights[idx]-heights[idx-1]);
-        int right = INT_MAX;
-        if (idx>1) right = mini(idx-2,heights,dp) + abs(heights[idx-2]-heights[idx]);
-        
-        return dp[idx]=min(left,right);
-    }
     int minimumEnergy(vector<int>& height, int n) {
-        vector<int> dp(n,-1);
-       return mini(n-1,height,dp);
+      int prev =0;
+      int prev2 = 0;
+      
+      for(int i=1;i<n;i++){
+          int fs = prev + abs(height[i]-height[i-1]);
+          int ss = INT_MAX;
+          if(i>1) ss = prev2+ abs(height[i]-height[i-2]);
+          
+          int curr = min(fs,ss);
+          prev2 = prev;
+          prev = curr;
+          
+      }
+      return prev;
     }
 };
 
