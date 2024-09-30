@@ -4,28 +4,30 @@ using namespace std;
 
 
 // } Driver Code Ends
-
 class Solution {
   public:
-    int func(int n, vector<int>&arr, int k , vector<int>&dp){
-        dp[0] = 0;
-        for(int i=1;i<n;i++){
-            int minsteps = INT_MAX;
-            for(int j=1;j<=k;j++){
-                if(i-j>=0){
-                 int jump = dp[i-j] + abs(arr[i]-arr[i-j]);
-                 minsteps = min (jump,minsteps);
-                }
-                
+  int solveUtil(int n, vector<int>& height, vector<int>& dp, int k) {
+    dp[0] = 0;
+
+  
+    for (int i = 1; i < n; i++) {
+        int mmSteps = INT_MAX;
+
+        
+        for (int j = 1; j <= k; j++) {
+            if (i - j >= 0) {
+                int jump = dp[i - j] + abs(height[i] - height[i - j]);
+                mmSteps = min(jump, mmSteps);
             }
-            dp[i]=minsteps;
         }
-        return dp[n-1];
+        dp[i] = mmSteps;
     }
+    return dp[n - 1]; 
+}
     int minimizeCost(int k, vector<int>& arr) {
-       int n = arr.size();
-       vector<int>dp(n,-1);
-       return func(n,arr,k,dp );
+        int n = arr.size();
+       vector<int> dp(n, -1); 
+    return solveUtil(n, arr, dp, k); 
     }
 };
 
