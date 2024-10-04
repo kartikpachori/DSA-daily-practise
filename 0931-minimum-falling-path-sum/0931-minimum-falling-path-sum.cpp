@@ -1,7 +1,7 @@
 class Solution {
 public:
     int minFallingPathSum(vector<vector<int>>& matrix) {
-        int n = matrix.size();  
+       int n = matrix.size();  
         vector<vector<int>> dp = matrix;
         for (int i = 1; i < n; i++) {
             for (int j = 0; j < n; j++) {
@@ -26,6 +26,7 @@ public:
             mini = min(mini, dp[n - 1][j]);
         }
 
-        return mini;
+        return mini; 
     }
 };
+
