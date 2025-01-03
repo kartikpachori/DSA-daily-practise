@@ -6,13 +6,12 @@ using namespace std;
 // } Driver Code Ends
 // User function Template for C++
 class Solution {
-public:
+  public:
     long long count(int n) {
-        int edges = (n * (n - 1)) / 2;
-        return static_cast<long long>(pow(2, edges));
+      int edges = (n*(n-1))/2;
+      return static_cast<long long>(pow(2,edges));
     }
 };
-
 
 //{ Driver Code Starts.
 int main() {
